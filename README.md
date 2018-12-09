@@ -1,5 +1,7 @@
-# apod-dybg
-Script to change daily the wallpaper of your Gnome Shell (Ubuntu) for the photo of the "Astronomy Picture of the Day" (https://apod.nasa.gov) or the "Amateur Astronomy Picture of the Day" (http://www.aapodx2.com)
+# apod-dybg-py
+Script to change daily the wallpaper of your Gnome Shell (Ubuntu) for the photo of the "Astronomy Picture of the Day" (https://apod.nasa.gov) or the "Amateur Astronomy Picture of the Day" (http://www.aapodx2.com).
+
+This version is a revision and a rewrite of a previous project written in BASH (https://github.com/boot1110001/apod-dybg).
 
 # Credits
 
