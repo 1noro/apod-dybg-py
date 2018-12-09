@@ -9,7 +9,8 @@ import urllib #to download websites
 import urllib2 #to download websites
 import datetime #to get the time
 import subprocess #to execute BASH commands
-
+from os import listdir #for list files in dir
+from os.path import isfile, join #for list files in dir
 
 ### NON EDITABLE VARIABLES #############################################
 HOME = expanduser("~") #to get the HOME user dir in linux
@@ -26,19 +27,25 @@ APOD2_DIR = HOME+"/00617/apod-dybg-py/tests/apod2"
 
 ### CLASSES ############################################################
 class BgImg:
-	def __init__(self, name, url, loc_dir, now):
+	def __init__(self, distinct, url, loc_dir, now):
 		patron = re.compile('\.(jpg|jpeg|png|gif)$')
 		matcher = patron.findall(url)
 		
-		self.name	= name
-		self.url	= url
-		self.ext	= matcher[0]
-		self.loc	= loc_dir+'/'+now+'-'+name+'.'+matcher[0]
+		self.url = url
+		self.distinct = distinct
+		self.dir = loc_dir
+		self.ext = matcher[0]
+		self.fname = now+'-'+distinct+'.'+matcher[0]
+		
+	def get_loc(self):
+		return self.dir+'/'+self.fname
 
 	def to_string(self):
-		print("My name is: "+self.name)
+		print("My file name is: "+self.fname)
 		print("My URL is: "+self.url)
-		print("My localization is: "+self.loc)
+		print("My localization is: "+self.get_loc())
+		print("My directory is: "+self.dir)
+		print("My distinct is: "+self.distinct)
 		print("My extension is: "+self.ext)
 
 
@@ -70,27 +77,36 @@ def check_url(url):
 		return True
 	
 def download_bg(bg):
-	print("Downloading the image '"+bg.url+"' in '"+bg.loc+"'...")
-	urllib.urlretrieve(bg.url,bg.loc)
+	print("Downloading the image '"+bg.url+"' in '"+bg.get_loc()+"'...")
+	urllib.urlretrieve(bg.url,bg.get_loc())
 		
 def set_as_bg(bg):
 	# The program should detect the desktop environment and select the correct command.
-	bashCommand = 'gsettings set org.gnome.desktop.background picture-uri file://'+bg.loc
+	bashCommand = 'gsettings set org.gnome.desktop.background picture-uri file://'+bg.get_loc()
 	print('CMD: '+bashCommand)
 	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
 
-def clean_old_bgs():
-	print("Cleaning the old background images...")
+def clean_old_bgs(bg1,bg2):
+	print("Cleaning the old background images from '"+APOD1_DIR+"':")
+	apod1_files = [f for f in listdir(APOD1_DIR) if isfile(join(APOD1_DIR, f))] #save the names of the files in the dir in a list
+	apod1_files.remove(bg1.fname)
+	for dfile in apod1_files:
+		print(" -removing: "+dfile)
+		os.remove(APOD1_DIR+'/'+dfile)
+
+	print("Cleaning the old background images from '"+APOD2_DIR+"':")
+	apod2_files = [f for f in listdir(APOD2_DIR) if isfile(join(APOD2_DIR, f))] #save the names of the files in the dir in a list
+	apod2_files.remove(bg2.fname)
+	for dfile in apod2_files:
+		print(" -removing: "+dfile)
+		os.remove(APOD2_DIR+'/'+dfile)
 	
 def clean_tmp_files():
 	print("Cleaning temporary files...")
 	# Temporary files are not yet saved.
 	
-def clean_all():
-	clean_tmp_files()
-	clean_old_bgs()
-	
+#¡¡Function that builds a BgImg from the name of an existing file in the folder!!
 
 ### MAIN ###############################################################
 url1=get_page1()
@@ -98,21 +114,21 @@ url2=get_page2()
 
 if (check_url(url1) and check_url(url2)):
 	print("The two URLs are correct and work well.")
-	b1 = BgImg('apod1',url1,APOD1_DIR,NOW)
-	b1.to_string()
-	b2 = BgImg('apod2',url2,APOD2_DIR,NOW)
-	b2.to_string()
+	bg1 = BgImg('apod1',url1,APOD1_DIR,NOW)
+	bg1.to_string()
+	bg2 = BgImg('apod2',url2,APOD2_DIR,NOW)
+	bg2.to_string()
 
-	download_bg(b1)
-	download_bg(b2)
+	download_bg(bg1)
+	download_bg(bg2)
 
-	set_as_bg(b1)
-	# ~ set_as_bg(b2)
-elif (check_url(url1):
+	set_as_bg(bg1)
+	# ~ #set_as_bg(bg2)
+	clean_old_bgs(bg1,bg2)
+elif (check_url(url1)):
 	print("The AAPOD2 URL gave an error, ending...")
 elif (check_url(url2)):
 	print("The APOD URL gave an error, ending...")
 else:
 	print("The two URLs gave an error, ending...")
-
 
