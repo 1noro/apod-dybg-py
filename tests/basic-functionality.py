@@ -108,7 +108,11 @@ if (check_url(url1) and check_url(url2)):
 
 	set_as_bg(b1)
 	# ~ set_as_bg(b2)
+elif (check_url(url1):
+	print("The AAPOD2 URL gave an error, ending...")
+elif (check_url(url2)):
+	print("The APOD URL gave an error, ending...")
 else:
-	print("One of the two URLs gave an error, ending...")
+	print("The two URLs gave an error, ending...")
 
 
