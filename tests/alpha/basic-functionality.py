@@ -238,8 +238,28 @@ def main():
 		clean_old_bgs(bg1,bg2)
 	elif (check_url(url1)):
 		print("The AAPOD2 URL gave an error, ending...")
+		bg1 = BgImg('apod1',url1,APOD1_DIR,NOW)
+		print(bg1.to_string())
+
+		pre_fname1=get_prev_bg(APOD1_DIR)
+		
+		bg1=choose_def_bg(pre_fname1,APOD1_DIR,bg1)
+		
+		set_as_bg(bg1)
+		
+		# ~ clean_old_bgs(bg1,bg2) #MOD THIS
 	elif (check_url(url2)):
 		print("The APOD URL gave an error, ending...")
+		bg2 = BgImg('apod2',url2,APOD2_DIR,NOW)
+		print(bg2.to_string())
+
+		pre_fname2=get_prev_bg(APOD2_DIR)
+		
+		bg2=choose_def_bg(pre_fname2,APOD2_DIR,bg2)
+		
+		set_as_bg(bg2)
+		
+		# ~ clean_old_bgs(bg1,bg2) #MOD THIS
 	else:
 		print("The two URLs gave an error, ending...")
 
@@ -247,15 +267,6 @@ def main():
 ### EXEC ###############################################################
 main()
 
-# ~ bg=LocalBgImg('2018-12-10-20-12-58-apod1.jpg',HOME+'/00617/apod-dybg-py/tests/alpha/apod1')
-# ~ print(bg.to_string())
-
-# ~ url1=get_page1()
-# ~ bg1 = BgImg('apod1',url1,APOD1_DIR,NOW)
-# ~ print(bg1.to_string())
-
-# ~ print (bg == bg1)
-# ~ print (bg1 == bg)
 
 
 
