@@ -166,20 +166,13 @@ def set_as_bg(bg):
 	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
 
-def clean_old_bgs(bg1,bg2):
-	print("Cleaning the old background images from '"+APOD1_DIR+"':")
-	apod1_files = [f for f in listdir(APOD1_DIR) if isfile(join(APOD1_DIR, f))] #save the names of the files in the dir in a list
-	apod1_files.remove(bg1.fname)
-	for dfile in apod1_files:
+def clean_old_bgs(bg,folder):
+	print("Cleaning the old background images from '"+folder+"':")
+	folder_files = [f for f in listdir(folder) if isfile(join(folder, f))] #save the names of the files in the dir in a list
+	folder_files.remove(bg.fname)
+	for dfile in folder_files:
 		print(" -removing: "+dfile)
-		os.remove(APOD1_DIR+'/'+dfile)
-
-	print("Cleaning the old background images from '"+APOD2_DIR+"':")
-	apod2_files = [f for f in listdir(APOD2_DIR) if isfile(join(APOD2_DIR, f))] #save the names of the files in the dir in a list
-	apod2_files.remove(bg2.fname)
-	for dfile in apod2_files:
-		print(" -removing: "+dfile)
-		os.remove(APOD2_DIR+'/'+dfile)
+		os.remove(folder+'/'+dfile)
 	
 def clean_tmp_files():
 	print("Cleaning temporary files...")
@@ -191,7 +184,7 @@ def get_prev_bg(folder):
 	folder_files = [f for f in listdir(folder) if isfile(join(folder, f))]
 	for dfile in folder_files:
 		if (patron.search(dfile)):
-			fname=dfile #if there is a more recent file that matches the pattern but for some reason is further back in the list it will be ignored
+			fname=dfile #if there is a more recent file that matches the pattern but for some reason is further back in the list it will be ignored (FIX IT!!!)
 			break
 	return fname
 	
@@ -235,7 +228,8 @@ def main():
 		else:
 			set_as_bg(bg1)
 		
-		clean_old_bgs(bg1,bg2)
+		clean_old_bgs(bg1,APOD1_DIR)
+		clean_old_bgs(bg2,APOD2_DIR)
 	elif (check_url(url1)):
 		print("The AAPOD2 URL gave an error, ending...")
 		bg1 = BgImg('apod1',url1,APOD1_DIR,NOW)
@@ -247,7 +241,7 @@ def main():
 		
 		set_as_bg(bg1)
 		
-		# ~ clean_old_bgs(bg1,bg2) #MOD THIS
+		clean_old_bgs(bg1,APOD1_DIR)
 	elif (check_url(url2)):
 		print("The APOD URL gave an error, ending...")
 		bg2 = BgImg('apod2',url2,APOD2_DIR,NOW)
@@ -258,8 +252,8 @@ def main():
 		bg2=choose_def_bg(pre_fname2,APOD2_DIR,bg2)
 		
 		set_as_bg(bg2)
-		
-		# ~ clean_old_bgs(bg1,bg2) #MOD THIS
+
+		clean_old_bgs(bg2,APOD2_DIR)
 	else:
 		print("The two URLs gave an error, ending...")
 
