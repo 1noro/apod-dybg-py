@@ -19,6 +19,9 @@ NOW = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
 
 ### EDITABLE VARIABLES #################################################
+# To ensure the correct operation of the program, the variables 
+# APOD1_DIR and APOD2_DIR must be different routes.
+
 # Write the path to the directory where the APOD images will be saved.
 APOD1_DIR = HOME+"/00617/apod-dybg-py/tests/alpha/apod1"
 # Write the path to the directory where the AAPOD2 images will be saved.
@@ -33,27 +36,48 @@ class BgImg:
 		patron = re.compile('\.(jpg|jpeg|png|gif)$')
 		matcher = patron.findall(url)
 		
+		remote_file = urllib.urlopen(url)
+		meta = remote_file.info()
+		
 		self.url = url
 		self.distinct = distinct
 		self.dir = loc_dir
-		self.dldate = now
+		self.exdate = now
 		self.ext = matcher[0]
+		self.fsize = meta.getheaders("Content-Length")[0]
 		self.fname = now+'-'+distinct+'.'+matcher[0]
-		#ADD fsize PARAMETER
 		
 	def get_loc(self):
 		return self.dir+'/'+self.fname
+		
+	def get_date(self):
+		fname_list=self.fname.split('-')
+		return fname_list[0]+'-'+fname_list[1]+'-'+fname_list[2]
 
 	def to_string(self):
-		string="My file name is: "+self.fname+"\n"
+		string="="*80+"\n"
+		string+="My file name is: "+self.fname+"\n"
 		string+="My URL is: "+self.url+"\n"
 		string+="My localization is: "+self.get_loc()+"\n"
 		string+="My directory is: "+self.dir+"\n"
-		string+="My download date is: "+self.dldate+"\n"
+		string+="My execution date is: "+self.exdate+"\n"
+		string+="My date is: "+self.get_date()+"\n"
 		string+="My distinct is: "+self.distinct+"\n"
-		string+="My extension is: "+self.ext+""
+		string+="My extension is: "+self.ext+"\n"
+		string+="My size in bytes is: "+self.fsize+"\n"
+		string+="="*80+""
 		return string
-	# IMPLEMENTE EQUEALS
+		
+	def __eq__(self,other):
+		out=False
+		if (other.dir and other.distinct and other.ext and other.fsize and other.get_date()):
+			if (other.dir==self.dir and other.distinct==self.distinct and other.ext==self.ext and other.fsize==self.fsize and other.get_date() == self.get_date()):
+				out=True
+		return out
+		
+	def __ne__(self, other):
+		#Overrides the default implementation (unnecessary in Python 3)
+		return not self.__eq__(other)
 
 class LocalBgImg:
 	def __init__(self, fname, loc_dir):
@@ -61,25 +85,46 @@ class LocalBgImg:
 		matcher = patron.findall(fname)
 		fname_list=fname.split('-')
 		
+		local_file = open(loc_dir+'/'+fname, "rb")
+		self.fsize=str(len(local_file.read()))
+		local_file.close()
+		
 		self.dir = loc_dir
 		self.fname = fname
 		self.ext = matcher[0]
-		self.dldate = fname.replace('-'+fname_list[-1],'')
+		self.exdate = fname.replace('-'+fname_list[-1],'')
 		self.distinct = fname_list[-1].replace('.'+matcher[0],'')
-		#ADD fsize PARAMETER
 		
 	def get_loc(self):
 		return self.dir+'/'+self.fname
+		
+	def get_date(self):
+		fname_list=self.fname.split('-')
+		return fname_list[0]+'-'+fname_list[1]+'-'+fname_list[2]
 
 	def to_string(self):
-		string="My file name is: "+self.fname+"\n"
+		string="="*80+"\n"
+		string+="My file name is: "+self.fname+"\n"
 		string+="My localization is: "+self.get_loc()+"\n"
 		string+="My directory is: "+self.dir+"\n"
-		string+="My download date is: "+self.dldate+"\n"
+		string+="My execution date is: "+self.exdate+"\n"
+		string+="My date is: "+self.get_date()+"\n"
 		string+="My distinct is: "+self.distinct+"\n"
-		string+="My extension is: "+self.ext+""
+		string+="My extension is: "+self.ext+"\n"
+		string+="My size in bytes is: "+self.fsize+"\n"
+		string+="="*80+""
 		return string
-	# IMPLEMENTE EQUEALS
+
+	def __eq__(self,other):
+		out=False
+		if (other.dir and other.distinct and other.ext and other.fsize and other.get_date()):
+			if (other.dir==self.dir and other.distinct==self.distinct and other.ext==self.ext and other.fsize==self.fsize and other.get_date() == self.get_date()):
+				out=True
+		return out
+		
+	def __ne__(self, other):
+		#Overrides the default implementation (unnecessary in Python 3)
+		return not self.__eq__(other)
 
 
 ### FUNCTIONS ##########################################################
@@ -114,9 +159,10 @@ def download_bg(bg):
 	urllib.urlretrieve(bg.url,bg.get_loc())
 		
 def set_as_bg(bg):
+	print("Assigning '"+bg.fname+"' as wallpaper...")
 	# The program should detect the desktop environment and select the correct command.
 	bashCommand = 'gsettings set org.gnome.desktop.background picture-uri file://'+bg.get_loc()
-	print('CMD: '+bashCommand)
+	# ~ print('CMD: '+bashCommand)
 	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
 
@@ -138,6 +184,32 @@ def clean_old_bgs(bg1,bg2):
 def clean_tmp_files():
 	print("Cleaning temporary files...")
 	# Temporary files are not yet saved.
+
+def get_prev_bg(folder):
+	fname=""
+	patron = re.compile('^\d{4}(?:-\d\d){5}-.*\.jpg|jpeg|png|gif$')
+	folder_files = [f for f in listdir(folder) if isfile(join(folder, f))]
+	for dfile in folder_files:
+		if (patron.search(dfile)):
+			fname=dfile #if there is a more recent file that matches the pattern but for some reason is further back in the list it will be ignored
+			break
+	return fname
+	
+def choose_def_bg(pre_fname,loc_dir,bg):
+	out=bg
+	if (pre_fname!=''):
+		print("A image already exists in the directory '"+loc_dir+"'.")
+		pre=LocalBgImg(pre_fname,loc_dir)
+		print(pre.to_string())
+		if(pre==bg):
+			print("The image has not yet been updated on the web. No need to download a new one.")
+			out=pre
+		else:
+			print("The image of the web is more updated.")
+			download_bg(bg)
+	else:
+		download_bg(bg)
+	return out
 	
 
 ### MAIN ###############################################################
@@ -152,8 +224,11 @@ def main():
 		bg2 = BgImg('apod2',url2,APOD2_DIR,NOW)
 		print(bg2.to_string())
 
-		download_bg(bg1)
-		download_bg(bg2)
+		pre_fname1=get_prev_bg(APOD1_DIR)
+		pre_fname2=get_prev_bg(APOD2_DIR)
+		
+		bg1=choose_def_bg(pre_fname1,APOD1_DIR,bg1)
+		bg2=choose_def_bg(pre_fname2,APOD2_DIR,bg2)
 		
 		if (PREFERENCE == 2):
 			set_as_bg(bg2)
@@ -171,11 +246,16 @@ def main():
 
 ### EXEC ###############################################################
 main()
-# ~ bg=LocalBgImg('2018-12-10-14-30-53-apod1.jpg',HOME+'/00617/apod-dybg-py/tests/alpha/apod1')
+
+# ~ bg=LocalBgImg('2018-12-10-20-12-58-apod1.jpg',HOME+'/00617/apod-dybg-py/tests/alpha/apod1')
 # ~ print(bg.to_string())
 
+# ~ url1=get_page1()
+# ~ bg1 = BgImg('apod1',url1,APOD1_DIR,NOW)
+# ~ print(bg1.to_string())
 
-
+# ~ print (bg == bg1)
+# ~ print (bg1 == bg)
 
 
 
