@@ -31,15 +31,15 @@ class BgImg:
 
 	def to_string(self):
 		string="="*80+"\n"
-		string+="My file name is: "+self.fname+"\n"
-		string+="My URL is: "+self.url+"\n"
-		string+="My localization is: "+self.get_loc()+"\n"
-		string+="My directory is: "+self.dir+"\n"
-		string+="My execution date is: "+self.exdate+"\n"
-		string+="My date is: "+self.get_date()+"\n"
-		string+="My distinct is: "+self.distinct+"\n"
-		string+="My extension is: "+self.ext+"\n"
-		string+="My size in bytes is: "+self.fsize+"\n"
+		string+=" my file name is: "+self.fname+"\n"
+		string+=" my URL is: "+self.url+"\n"
+		string+=" my localization is: "+self.get_loc()+"\n"
+		string+=" my directory is: "+self.dir+"\n"
+		string+=" my execution date is: "+self.exdate+"\n"
+		string+=" my date is: "+self.get_date()+"\n"
+		string+=" my distinct is: "+self.distinct+"\n"
+		string+=" my extension is: "+self.ext+"\n"
+		string+=" my size in bytes is: "+self.fsize+"\n"
 		string+="="*80+""
 		return string
 
@@ -79,14 +79,14 @@ class LocalBgImg:
 
 	def to_string(self):
 		string="="*80+"\n"
-		string+="My file name is: "+self.fname+"\n"
-		string+="My localization is: "+self.get_loc()+"\n"
-		string+="My directory is: "+self.dir+"\n"
-		string+="My execution date is: "+self.exdate+"\n"
-		string+="My date is: "+self.get_date()+"\n"
-		string+="My distinct is: "+self.distinct+"\n"
-		string+="My extension is: "+self.ext+"\n"
-		string+="My size in bytes is: "+self.fsize+"\n"
+		string+=" my file name is: "+self.fname+"\n"
+		string+=" my localization is: "+self.get_loc()+"\n"
+		string+=" my directory is: "+self.dir+"\n"
+		string+=" my execution date is: "+self.exdate+"\n"
+		string+=" my date is: "+self.get_date()+"\n"
+		string+=" my distinct is: "+self.distinct+"\n"
+		string+=" my extension is: "+self.ext+"\n"
+		string+=" my size in bytes is: "+self.fsize+"\n"
 		string+="="*80+""
 		return string
 
