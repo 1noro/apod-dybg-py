@@ -9,8 +9,9 @@ import core.clases
 import core.extra
 
 ### NON EDITABLE VARIABLES #####################################################
-HOME = expanduser("~") #to get the HOME user dir in linux
-# time wehe this script is executed in format YYYY-mm-dd-HH-MM-SS
+# To get the HOME user dir in linux.
+HOME = expanduser("~")
+# Time wehe this script is executed in format YYYY-mm-dd-HH-MM-SS.
 NOW = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
 ### EDITABLE VARIABLES #########################################################
@@ -23,6 +24,7 @@ APOD1_DIR = HOME+"/00617/apod-dybg-py/tests/alpha/apod1"
 APOD2_DIR = HOME+"/00617/apod-dybg-py/tests/alpha/apod2"
 # Select the APOD preference (1) over AAPOD2 (2). By default, APOD (1) will be used.
 PREFERENCE = 1
+
 
 ### MAIN #######################################################################
 def main():

@@ -2,7 +2,6 @@
 #by boot1110001
 
 ### IMPORTS ####################################################################
-#import os #for a lot of things
 import re #for regex
 import urllib #to download websites
 import urllib2 #to download websites
