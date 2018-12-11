@@ -19,7 +19,7 @@ NOW = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
 
 ### EDITABLE VARIABLES #################################################
-# To ensure the correct operation of the program, the variables 
+# To ensure the correct operation of the program, the variables
 # APOD1_DIR and APOD2_DIR must be different routes.
 
 # Write the path to the directory where the APOD images will be saved.
@@ -30,15 +30,15 @@ APOD2_DIR = HOME+"/00617/apod-dybg-py/tests/alpha/apod2"
 PREFERENCE = 1
 
 
-### CLASSES ############################################################
+### CLASES #############################################################
 class BgImg:
 	def __init__(self, distinct, url, loc_dir, now):
 		patron = re.compile('\.(jpg|jpeg|png|gif)$')
 		matcher = patron.findall(url)
-		
+
 		remote_file = urllib.urlopen(url)
 		meta = remote_file.info()
-		
+
 		self.url = url
 		self.distinct = distinct
 		self.dir = loc_dir
@@ -46,10 +46,10 @@ class BgImg:
 		self.ext = matcher[0]
 		self.fsize = meta.getheaders("Content-Length")[0]
 		self.fname = now+'-'+distinct+'.'+matcher[0]
-		
+
 	def get_loc(self):
 		return self.dir+'/'+self.fname
-		
+
 	def get_date(self):
 		fname_list=self.fname.split('-')
 		return fname_list[0]+'-'+fname_list[1]+'-'+fname_list[2]
@@ -67,14 +67,14 @@ class BgImg:
 		string+="My size in bytes is: "+self.fsize+"\n"
 		string+="="*80+""
 		return string
-		
+
 	def __eq__(self,other):
 		out=False
 		if (other.dir and other.distinct and other.ext and other.fsize and other.get_date()):
 			if (other.dir==self.dir and other.distinct==self.distinct and other.ext==self.ext and other.fsize==self.fsize and other.get_date() == self.get_date()):
 				out=True
 		return out
-		
+
 	def __ne__(self, other):
 		#Overrides the default implementation (unnecessary in Python 3)
 		return not self.__eq__(other)
@@ -84,20 +84,20 @@ class LocalBgImg:
 		patron = re.compile('\.(jpg|jpeg|png|gif)$')
 		matcher = patron.findall(fname)
 		fname_list=fname.split('-')
-		
+
 		local_file = open(loc_dir+'/'+fname, "rb")
 		self.fsize=str(len(local_file.read()))
 		local_file.close()
-		
+
 		self.dir = loc_dir
 		self.fname = fname
 		self.ext = matcher[0]
 		self.exdate = fname.replace('-'+fname_list[-1],'')
 		self.distinct = fname_list[-1].replace('.'+matcher[0],'')
-		
+
 	def get_loc(self):
 		return self.dir+'/'+self.fname
-		
+
 	def get_date(self):
 		fname_list=self.fname.split('-')
 		return fname_list[0]+'-'+fname_list[1]+'-'+fname_list[2]
@@ -121,7 +121,7 @@ class LocalBgImg:
 			if (other.dir==self.dir and other.distinct==self.distinct and other.ext==self.ext and other.fsize==self.fsize and other.get_date() == self.get_date()):
 				out=True
 		return out
-		
+
 	def __ne__(self, other):
 		#Overrides the default implementation (unnecessary in Python 3)
 		return not self.__eq__(other)
@@ -134,14 +134,14 @@ def get_page1():
 	patron=re.compile('.*<IMG SRC=\"(.*?)\"')
 	matcher=patron.findall(web_content)
 	return 'http://apod.nasa.gov/apod/'+matcher[0]
-	
+
 def get_page2():
 	print("Downloading the page to find the image2...")
 	web_content=urllib2.urlopen('http://www.aapodx2.com/').read()
 	patron=re.compile('.*href=\"(.*?)\"><img')
 	matcher=patron.findall(web_content)
 	return 'http://www.aapodx2.com'+matcher[1]
-	
+
 def check_url(url):
 	try:
 		resp = urllib2.urlopen(url)
@@ -153,11 +153,11 @@ def check_url(url):
 	else:
 		print "The URL '"+url+"' gave the code:", resp.code, resp.msg
 		return True
-	
+
 def download_bg(bg):
 	print("Downloading the image '"+bg.url+"' in '"+bg.get_loc()+"'...")
 	urllib.urlretrieve(bg.url,bg.get_loc())
-		
+
 def set_as_bg(bg):
 	print("Assigning '"+bg.fname+"' as wallpaper...")
 	# The program should detect the desktop environment and select the correct command.
@@ -173,7 +173,7 @@ def clean_old_bgs(bg,folder):
 	for dfile in folder_files:
 		print(" -removing: "+dfile)
 		os.remove(folder+'/'+dfile)
-	
+
 def clean_tmp_files():
 	print("Cleaning temporary files...")
 	# Temporary files are not yet saved.
@@ -187,7 +187,7 @@ def get_prev_bg(folder):
 			fname=dfile #if there is a more recent file that matches the pattern but for some reason is further back in the list it will be ignored (FIX IT!!!)
 			break
 	return fname
-	
+
 def choose_def_bg(pre_fname,loc_dir,bg):
 	out=bg
 	if (pre_fname!=''):
@@ -203,7 +203,7 @@ def choose_def_bg(pre_fname,loc_dir,bg):
 	else:
 		download_bg(bg)
 	return out
-	
+
 
 ### MAIN ###############################################################
 def main():
@@ -219,15 +219,15 @@ def main():
 
 		pre_fname1=get_prev_bg(APOD1_DIR)
 		pre_fname2=get_prev_bg(APOD2_DIR)
-		
+
 		bg1=choose_def_bg(pre_fname1,APOD1_DIR,bg1)
 		bg2=choose_def_bg(pre_fname2,APOD2_DIR,bg2)
-		
+
 		if (PREFERENCE == 2):
 			set_as_bg(bg2)
 		else:
 			set_as_bg(bg1)
-		
+
 		clean_old_bgs(bg1,APOD1_DIR)
 		clean_old_bgs(bg2,APOD2_DIR)
 	elif (check_url(url1)):
@@ -236,11 +236,11 @@ def main():
 		print(bg1.to_string())
 
 		pre_fname1=get_prev_bg(APOD1_DIR)
-		
+
 		bg1=choose_def_bg(pre_fname1,APOD1_DIR,bg1)
-		
+
 		set_as_bg(bg1)
-		
+
 		clean_old_bgs(bg1,APOD1_DIR)
 	elif (check_url(url2)):
 		print("The APOD URL gave an error, ending...")
@@ -248,9 +248,9 @@ def main():
 		print(bg2.to_string())
 
 		pre_fname2=get_prev_bg(APOD2_DIR)
-		
+
 		bg2=choose_def_bg(pre_fname2,APOD2_DIR,bg2)
-		
+
 		set_as_bg(bg2)
 
 		clean_old_bgs(bg2,APOD2_DIR)
@@ -260,16 +260,3 @@ def main():
 
 ### EXEC ###############################################################
 main()
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,1 +1,2 @@
+#setup
 print("Puff... setup.")
