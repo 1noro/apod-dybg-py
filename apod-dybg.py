@@ -96,6 +96,7 @@ def main():
 		core.extra.clean_old_bgs(bg2, APOD2_DIR)
 	else:
 		print("The two URLs gave an error, ending...")
+        # ADD DEFAULT BG OPTION HERE
 
 ### EXEC #######################################################################
 # CHECK IN THE FUTURE HOW IT WORKS
