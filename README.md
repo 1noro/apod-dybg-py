@@ -10,11 +10,10 @@ This program only works currently on GNU/Linux with a GNOME Shell desktop enviro
 
 The tests prove that it works correctly on Ubuntu 18.04.01 with GNOME Shell and the 2.7.15rc1 Python version.
 
+Note that this project is still under development, so it is not yet stable enough.
+
 # Installation
 Currently the project is at a very early stage of its development (ALPHA), I would like to provide an installer as soon as possible.
-
-# Things to keep in mind
-Note that this project is still under development, so it is not yet stable enough.
 
 # Credits
 Created, programmed and maintained by boot1110001.
