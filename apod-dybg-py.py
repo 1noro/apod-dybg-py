@@ -73,7 +73,7 @@ def main():
 
 	try:
 		url2 = core.extra.get_page2()
-		url2 = 'http://www.aapodx2.com/2018/20181212.jpg2' # 404
+		# url2 = 'http://www.aapodx2.com/2018/20181212.jpg2' # 404
 		pass
 	except urllib2.URLError:
 		connection2=False
