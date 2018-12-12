@@ -21,7 +21,7 @@ Created, programmed and maintained by boot1110001.
 
 Inspired on the script of Josh Schreuder (2011) https://gist.github.com/JoshSchreuder/882666.
 
-# License
+# Licenses
 Project under the GNU General Public License version 3 (https://www.gnu.org/licenses/gpl.txt).
 
 The icons sets are under the Creative Commons Attribution 4.0 International (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).
