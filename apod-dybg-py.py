@@ -21,13 +21,13 @@ NOW = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 # APOD1_DIR and APOD2_DIR must be different routes.
 
 # Write the path to the directory where the APOD images will be saved.
-APOD1_DIR = HOME+"/00617/apod-dybg-py-tests/apod1"
+APOD1_DIR = HOME+'/.apod-dybg-py/media/apod-image'
 # Write the path to the directory where the AAPOD2 images will be saved.
-APOD2_DIR = HOME+"/00617/apod-dybg-py-tests/apod2"
+APOD2_DIR = HOME+'/.apod-dybg-py/media/aapod2-image'
 # Select the APOD preference (1) over AAPOD2 (2). By default, APOD (1) will be used.
 PREFERENCE = 1
 # Write the path to the directory where the default images are saved.
-DEFBG_DIR = HOME+"/00617/apod-dybg-py-tests/default-bg"
+DEFBG_DIR = HOME+'/.apod-dybg-py/media/bg-default'
 # Extra vervose option (to see the file's information).
 VERVOSE = False
 
