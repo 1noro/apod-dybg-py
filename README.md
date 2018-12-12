@@ -7,7 +7,7 @@ This version is a Python rewrite of my previous project written in BASH (https:/
 In the future I would like to add support for more desktop environments (starting with XFCE).
 
 ## Requirements
-This program only works currently on GNU/Linux with a GNOME Shell desktop environment.
+At the present time, this program only __works on GNU/Linux with a GNOME Shell desktop__ environment.
 
 This one is required, but should already be installed:
 
@@ -20,7 +20,7 @@ The tests prove that it works correctly on Ubuntu 18.04.01 with GNOME Shell and 
 Note that this project is still under development, so it is not yet stable enough.
 
 ## Installation :rocket:
-Currently the project is at a very early stage of its development (BETA), you can install it on your PC, but future versions may delete previous configurations in the program.
+Currently the project is at a very early stage of its development (_BETA_), you can install it on your PC, but future versions may delete previous configurations in the program.
 
 ```
 git clone https://github.com/boot1110001/apod-dybg-py.git
@@ -30,11 +30,11 @@ chmod u+x setup.py
 ```
 
 ## Uninstallation :boom:
-Currently the ```utils/uninstall.py``` file is not yet implemented.
+Currently the `utils/uninstall.py` file is not yet implemented.
 
 ## Credits
 
-- Created, programmed and maintained by boot1110001.
+- Created, programmed and maintained by @boot1110001.
 - Inspired on the script of Josh Schreuder (2011) https://gist.github.com/JoshSchreuder/882666.
 
 ## Licenses
