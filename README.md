@@ -1,4 +1,5 @@
-# Astronomy Picture Of the Day Dynamic Background
+
+# Astronomy Picture Of the Day Dynamic Background ![](https://raw.githubusercontent.com/boot1110001/apod-dybg-py/master/media/icons/32x32/apod-dybg.png)
 Script to change daily the wallpaper of your GNOME Shell for the photo of the "Astronomy Picture of the Day" (https://apod.nasa.gov) or the "Amateur Astronomy Picture of the Day" (http://www.aapodx2.com) according to your preference.
 
 This version is a Python rewrite of my previous project written in BASH (https://github.com/boot1110001/apod-dybg).
