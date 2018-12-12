@@ -20,7 +20,14 @@ The tests prove that it works correctly on Ubuntu 18.04.01 with GNOME Shell and 
 Note that this project is still under development, so it is not yet stable enough.
 
 ## Installation
-Currently the project is at a very early stage of its development (ALPHA), I would like to provide an installer as soon as possible.
+Currently the project is at a very early stage of its development (BETA), you can install it on your PC, but future versions may delete previous configurations in the program.
+
+```
+git clone https://github.com/boot1110001/apod-dybg-py.git
+cd apod-dybg-py
+chmod +x setup.py
+./setup.py
+```
 
 ## Uninstallation
 Currently the uninstall.py file is not yet implemented.
