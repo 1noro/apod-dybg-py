@@ -15,7 +15,7 @@ This one is required, but should already be installed:
 sudo apt-get install python-gobject
 ```
 
-The tests prove that it _works correctly_ on Ubuntu 18.04.01 with GNOME Shell and the 2.7.15rc1 Python version, and I have not needed to install any program.
+The tests prove that it _works correctly_ on Ubuntu 18.04.01 with GNOME Shell 3.28.3 and the 2.7.15rc1 Python version, and I have not needed to install any program.
 
 > Note that this project is still under development, so it is not yet stable enough.
 
