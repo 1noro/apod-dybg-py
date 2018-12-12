@@ -9,7 +9,13 @@ In the future I would like to add support for more desktop environments (startin
 # Requirements
 This program only works currently on GNU/Linux with a GNOME Shell desktop environment.
 
-The tests prove that it works correctly on Ubuntu 18.04.01 with GNOME Shell and the 2.7.15rc1 Python version.
+This one is required, but should already be installed:
+
+```
+sudo apt-get install python-gobject
+```
+
+The tests prove that it works correctly on Ubuntu 18.04.01 with GNOME Shell and the 2.7.15rc1 Python version, and I have not needed to install any program.
 
 Note that this project is still under development, so it is not yet stable enough.
 

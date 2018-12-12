@@ -15,6 +15,8 @@ from core.utils import CmdColor
 ### NON EDITABLE VARIABLES #####################################################
 # To get the HOME user dir in linux.
 HOME = expanduser("~")
+# To get the HOME user dir in linux.
+NOTIFY_ICON = HOME+'/.apod-dybg-py/media/icons/22x22/apod-dybg-py.png'
 # Time wehe this script is executed in format YYYY-mm-dd-HH-MM-SS.
 NOW = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
 
@@ -71,7 +73,7 @@ def main():
 
 	try:
 		url2 = core.extra.get_page2()
-		# url2 = 'http://www.aapodx2.com/2018/20181212.jpg2' # 404
+		url2 = 'http://www.aapodx2.com/2018/20181212.jpg2' # 404
 		pass
 	except urllib2.URLError:
 		connection2=False
@@ -100,23 +102,24 @@ def main():
 			core.extra.clean_old_bgs(bg1, APOD1_DIR)
 			core.extra.clean_old_bgs(bg2, APOD2_DIR)
 		elif (core.extra.check_url(url1)):
-			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
-			print("["+CmdColor.WARNING+"SEMI"+CmdColor.ENDC+"] The AAPOD2 URL gave an error, changing the preference to APOD...")
+			print("["+CmdColor.WARNING+"WARN"+CmdColor.ENDC+"] The AAPOD2 URL gave an error, changing the preference to APOD...")
+			core.extra.send_notification(NOTIFY_ICON,'WARNING','The AAPOD2 URL gave an error, changing the preference to APOD...')
 			bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
 			if VERVOSE: print(bg1.to_string())
 			only_one_apod(bg1,APOD1_DIR)
 		elif (core.extra.check_url(url2)):
-			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
-			print("["+CmdColor.WARNING+"SEMI"+CmdColor.ENDC+"] The APOD URL gave an error, changing the preference to AAPOD2...")
+			print("["+CmdColor.WARNING+"WARN"+CmdColor.ENDC+"] The APOD URL gave an error, changing the preference to AAPOD2...")
+			core.extra.send_notification(NOTIFY_ICON,'WARNING','The APOD URL gave an error, changing the preference to AAPOD2...')
 			bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
 			if VERVOSE: print(bg2.to_string())
 			only_one_apod(bg2,APOD2_DIR)
 		else:
-			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
 			print("["+CmdColor.FAIL+"FAIL"+CmdColor.ENDC+"] The two URLs gave an error, assigning a default background...")
+			core.extra.send_notification(NOTIFY_ICON,'FAIL','The two URLs gave an error, assigning a default background...')
 			core.extra.set_def_bg(DEFBG_DIR)
 	elif connection1:
-		print("["+CmdColor.WARNING+"SEMI"+CmdColor.ENDC+"] The connection to 'www.aapodx2.com' has failed, changing the preference to APOD...")
+		print("["+CmdColor.WARNING+"WARN"+CmdColor.ENDC+"] The connection to 'www.aapodx2.com' has failed, changing the preference to APOD...")
+		core.extra.send_notification(NOTIFY_ICON,'WARNING',"The connection to 'www.aapodx2.com' has failed, changing the preference to APOD...")
 		if core.extra.check_url(url1):
 			bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
 			if VERVOSE: print(bg1.to_string())
@@ -125,7 +128,8 @@ def main():
 			print("Assigning a default background...")
 			core.extra.set_def_bg(DEFBG_DIR)
 	elif connection2:
-		print("["+CmdColor.WARNING+"SEMI"+CmdColor.ENDC+"] The connection to 'apod.nasa.gov/apod' has failed, changing the preference to AAPOD2...")
+		print("["+CmdColor.WARNING+"WARN"+CmdColor.ENDC+"] The connection to 'apod.nasa.gov/apod' has failed, changing the preference to AAPOD2...")
+		core.extra.send_notification(NOTIFY_ICON,'WARNING',"The connection to 'apod.nasa.gov/apod' has failed, changing the preference to AAPOD2...")
 		if core.extra.check_url(url2):
 			bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
 			if VERVOSE: print(bg2.to_string())
@@ -135,6 +139,7 @@ def main():
 			core.extra.set_def_bg(DEFBG_DIR)
 	else:
 		print("["+CmdColor.FAIL+"FAIL"+CmdColor.ENDC+"] There is no connection, assigning a default background...")
+		core.extra.send_notification(NOTIFY_ICON,'FAIL',"There is no connection, assigning a default background...")
 		core.extra.set_def_bg(DEFBG_DIR)
 		# If there is a downloaded image and there is no connection, check the
 		# date of the download, and if it is the same day, assign it as bg.

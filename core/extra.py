@@ -12,6 +12,11 @@ from os.path import isfile, join #for list files in dir
 from os import remove #for delete files
 from random import randint #to get a rabdom integer
 
+# For desktop notifications
+import gi
+gi.require_version('Notify', '0.7') #required
+from gi.repository import Notify, GdkPixbuf
+
 from utils import CmdColor
 
 ### FUNCTIONS ##################################################################
@@ -53,6 +58,27 @@ def set_as_bg(fname,full_loc):
 	# print('CMD: '+bashCommand)
 	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
+
+def send_notification(icon,summary,body):
+	# From: https://www.devdungeon.com/content/desktop-notifications-linux-python
+	# This one is required, but should already be installed
+	# sudo apt-get install python-gobject
+
+	# Installing this will install the
+	# notify-send program. Check that out
+	# for sending notifications in the shell
+	# sudo apt-get install libnotify-bin
+
+	# The development headers if you
+	# want to do any development in C/C++
+	# sudo apt-get install libnotify-dev
+
+	Notify.init("apod-dybg-py")
+	image = GdkPixbuf.Pixbuf.new_from_file(icon)
+	notification = Notify.Notification.new(summary,body)
+	notification.set_icon_from_pixbuf(image)
+	# notification.set_image_from_pixbuf(image)
+	notification.show()
 
 def clean_old_bgs(bg,folder):
 	print("[ RM ] Cleaning the old background images from '"+folder+"':")
