@@ -33,12 +33,12 @@ chmod u+x setup.py
 Currently the ```utils/uninstall.py``` file is not yet implemented.
 
 ## Credits
-Created, programmed and maintained by boot1110001.
 
-Inspired on the script of Josh Schreuder (2011) https://gist.github.com/JoshSchreuder/882666.
+- Created, programmed and maintained by boot1110001.
+- Inspired on the script of Josh Schreuder (2011) https://gist.github.com/JoshSchreuder/882666.
 
 ## Licenses
 
-    *Project under the GNU General Public License version 3 (https://www.gnu.org/licenses/gpl.txt).
-    *The icons sets are under the Creative Commons Attribution 4.0 International (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).
-    *The default wallpapers added to the project are images taken from web page https://apod.nasa.gov/apod, so their corresponding license will be applied.
+- Project under the GNU General Public License version 3 (https://www.gnu.org/licenses/gpl.txt).
+- The icons sets are under the Creative Commons Attribution 4.0 International (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).
+- The default wallpapers added to the project are images taken from web page https://apod.nasa.gov/apod, so their corresponding license will be applied.
