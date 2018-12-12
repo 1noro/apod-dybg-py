@@ -138,6 +138,10 @@ orig_file='core/extra.py'
 dest_file=HOME+'/.apod-dybg-py/core/extra.py'
 shutil.copyfile(orig_file,dest_file)
 print " cp "+dest_file
+orig_file='core/utils.py'
+dest_file=HOME+'/.apod-dybg-py/core/utils.py'
+shutil.copyfile(orig_file,dest_file)
+print " cp "+dest_file
 
 print "# Copying all the default backgrounds"
 orig_folder='media/bg-default'
