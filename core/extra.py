@@ -15,7 +15,7 @@ from random import randint #to get a rabdom integer
 ### FUNCTIONS ##################################################################
 def get_page1():
 	print("Downloading the page 'http://apod.nasa.gov/apod/' to find the image1...")
-	web_content=urllib2.urlopen('http://apod.nasa.gov/apod/').read()
+	web_content=urllib2.urlopen('http://apod.nasa.gov/apod2/').read()
 	patron=re.compile('.*<IMG SRC=\"(.*?)\"')
 	matcher=patron.findall(web_content)
 	return 'http://apod.nasa.gov/apod/'+matcher[0]
@@ -33,10 +33,10 @@ def check_url(url):
 	except urllib2.URLError, e:
 		if not hasattr(e,"code"):
 			raise
-		print "The URL '"+url+"' gave the error:", e.code, e.msg
+		print "[FAIL]The URL '"+url+"' gave the error:", e.code, e.msg
 		return False
 	else:
-		print "The URL '"+url+"' gave the code:", resp.code, resp.msg
+		print "[ OK ] The URL '"+url+"' gave the code:", resp.code, resp.msg
 		return True
 
 def download_bg(bg):
