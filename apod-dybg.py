@@ -40,9 +40,9 @@ def choose_def_bg(pre_fname, loc_dir, bg):
 			out = pre
 		else:
 			print("The image of the web is more updated.")
-			download_bg(bg)
+			core.extra.download_bg(bg)
 	else:
-		download_bg(bg)
+		core.extra.download_bg(bg)
 	return out
 
 ### MAIN #######################################################################
@@ -52,9 +52,9 @@ def main():
 
 	if (core.extra.check_url(url1) and core.extra.check_url(url2)):
 		print("The two URLs are correct and work well.")
-		bg1 = core.clases.BgImg('apod1', url1, APOD1_DIR,NOW)
+		bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR,NOW)
 		if VERVOSE: print(bg1.to_string())
-		bg2 = core.clases.BgImg('apod2', url2, APOD2_DIR,NOW)
+		bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR,NOW)
 		if VERVOSE: print(bg2.to_string())
 
 		pre_fname1 = core.extra.get_prev_bg(APOD1_DIR)
@@ -72,7 +72,7 @@ def main():
 		core.extra.clean_old_bgs(bg2, APOD2_DIR)
 	elif (core.extra.check_url(url1)):
 		print("The AAPOD2 URL gave an error, ending...")
-		bg1 = core.clases.BgImg('apod1', url1, APOD1_DIR, NOW)
+		bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
 		if VERVOSE: print(bg1.to_string())
 
 		pre_fname1 = core.extra.get_prev_bg(APOD1_DIR)
@@ -84,7 +84,7 @@ def main():
 		core.extra.clean_old_bgs(bg1, APOD1_DIR)
 	elif (core.extra.check_url(url2)):
 		print("The APOD URL gave an error, ending...")
-		bg2 = core.clases.BgImg('apod2', url2, APOD2_DIR, NOW)
+		bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
 		if VERVOSE: print(bg2.to_string())
 
 		pre_fname2 = core.extra.get_prev_bg(APOD2_DIR)

@@ -6,7 +6,7 @@ import re #for regex
 from urllib import urlopen #to download websites
 
 ### CLASES #####################################################################
-class BgImg:
+class RemoteBgImg:
 	def __init__(self, distinct, url, loc_dir, now):
 		patron = re.compile('\.(jpg|jpeg|png|gif)$')
 		matcher = patron.findall(url)
