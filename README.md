@@ -1,6 +1,6 @@
 
 # Astronomy Picture Of the Day DYBG ![](https://raw.githubusercontent.com/boot1110001/apod-dybg-py/master/media/icons/24x24/apod-dybg-py.png)
-Script to change daily the wallpaper of your GNOME Shell for the photo of the "[Astronomy Picture of the Day](https://apod.nasa.gov)" or the "[Amateur Astronomy Picture of the Day](http://www.aapodx2.com)" according to your preference.
+Script to change daily the wallpaper of your GNOME Shell for the photo of the [Astronomy Picture of the Day](https://apod.nasa.gov) or the [Amateur Astronomy Picture of the Day](http://www.aapodx2.com) according to your preference.
 
 This version is a Python rewrite of my [previous project written in BASH](https://github.com/boot1110001/apod-dybg).
 
@@ -41,4 +41,4 @@ Currently the `utils/uninstall.py` file is not yet implemented.
 
 - Project under the __[GNU General Public License version 3](https://www.gnu.org/licenses/gpl.txt)__.
 - The icons sets are under the __[Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)__ (CC BY 4.0) license .
-- The default wallpapers added to the project are images taken from web page "[Astronomy Picture of the Day](https://apod.nasa.gov)", so their __corresponding license__ will be applied.
+- The default wallpapers added to the project are images taken from web page [Astronomy Picture of the Day](https://apod.nasa.gov), so their __corresponding license__ will be applied.
