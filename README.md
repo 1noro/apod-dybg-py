@@ -25,12 +25,12 @@ Currently the project is at a very early stage of its development (BETA), you ca
 ```
 git clone https://github.com/boot1110001/apod-dybg-py.git
 cd apod-dybg-py
-chmod +x setup.py
+chmod u+x setup.py
 ./setup.py
 ```
 
 ## Uninstallation
-Currently the uninstall.py file is not yet implemented.
+Currently the ```uninstall.py file``` is not yet implemented.
 
 ## Credits
 Created, programmed and maintained by boot1110001.
