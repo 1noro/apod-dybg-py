@@ -25,6 +25,8 @@ APOD1_DIR = HOME+"/00617/apod-dybg-py-tests/apod1"
 APOD2_DIR = HOME+"/00617/apod-dybg-py-tests/apod2"
 # Select the APOD preference (1) over AAPOD2 (2). By default, APOD (1) will be used.
 PREFERENCE = 1
+# Write the path to the directory where the default images are saved.
+DEFBG_DIR = HOME+"/00617/apod-dybg-py-tests/default-bg"
 # Extra vervose option (to see the file's information).
 VERVOSE = False
 
@@ -64,9 +66,9 @@ def main():
 		bg2 = choose_def_bg(pre_fname2, APOD2_DIR, bg2)
 
 		if (PREFERENCE == 2):
-			core.extra.set_as_bg(bg2)
+			core.extra.set_as_bg2(bg2.fname,bg2.get_loc())
 		else:
-			core.extra.set_as_bg(bg1)
+			core.extra.set_as_bg2(bg1.fname,bg1.get_loc())
 
 		core.extra.clean_old_bgs(bg1, APOD1_DIR)
 		core.extra.clean_old_bgs(bg2, APOD2_DIR)
@@ -79,7 +81,7 @@ def main():
 
 		bg1 = choose_def_bg(pre_fname1, APOD1_DIR, bg1)
 
-		core.extra.set_as_bg(bg1)
+		core.extra.set_as_bg2(bg1.fname,bg1.get_loc())
 
 		core.extra.clean_old_bgs(bg1, APOD1_DIR)
 	elif (core.extra.check_url(url2)):
@@ -91,12 +93,13 @@ def main():
 
 		bg2 = choose_def_bg(pre_fname2, APOD2_DIR, bg2)
 
-		core.extra.set_as_bg(bg2)
+		core.extra.set_as_bg2(bg2.fname,bg2.get_loc())
 
 		core.extra.clean_old_bgs(bg2, APOD2_DIR)
 	else:
 		print("The two URLs gave an error, ending...")
-        # ADD DEFAULT BG OPTION HERE
+		fname=extra.choose_random_file(DEFBG_DIR)
+		extra.set_as_bg2(fname,DEFBG_DIR+'/'+fname)
 
 ### EXEC #######################################################################
 # CHECK IN THE FUTURE HOW IT WORKS

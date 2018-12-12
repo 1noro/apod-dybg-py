@@ -10,6 +10,7 @@ import subprocess #to execute BASH commands
 from os import listdir #for list files in dir
 from os.path import isfile, join #for list files in dir
 from os import remove #for delete files
+from random import randint #to get a rabdom integer
 
 ### FUNCTIONS ##################################################################
 def get_page1():
@@ -42,11 +43,20 @@ def download_bg(bg):
 	print("Downloading the image '"+bg.url+"' in '"+bg.get_loc()+"'...")
 	urllib.urlretrieve(bg.url,bg.get_loc())
 
+#DEPRECATED
 def set_as_bg(bg):
 	print("Assigning '"+bg.fname+"' as wallpaper...")
 	# The program should detect the desktop environment and select the correct command.
 	bashCommand = 'gsettings set org.gnome.desktop.background picture-uri file://'+bg.get_loc()
 	# ~ print('CMD: '+bashCommand)
+	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+	output, error = process.communicate()
+
+def set_as_bg2(fname,full_loc):
+	print("Assigning '"+fname+"' as wallpaper...")
+	# The program should detect the desktop environment and select the correct command.
+	bashCommand = 'gsettings set org.gnome.desktop.background picture-uri file://'+full_loc
+	print('CMD: '+bashCommand)
 	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
 
@@ -71,3 +81,7 @@ def get_prev_bg(folder):
 			fname=dfile #if there is a more recent file that matches the pattern but for some reason is further back in the list it will be ignored (FIX IT!!!)
 			break
 	return fname
+
+def choose_random_file(folder):
+	folder_files = [f for f in listdir(folder) if isfile(join(folder, f))]
+	return folder_files[randint(0,len(folder_files)-1)]
