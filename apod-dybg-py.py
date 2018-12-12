@@ -74,6 +74,7 @@ def main():
 		core.extra.clean_old_bgs(bg1, APOD1_DIR)
 		core.extra.clean_old_bgs(bg2, APOD2_DIR)
 	elif (core.extra.check_url(url1)):
+		#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
 		print("The AAPOD2 URL gave an error, ending...")
 		bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
 		if VERVOSE: print(bg1.to_string())
@@ -86,6 +87,7 @@ def main():
 
 		core.extra.clean_old_bgs(bg1, APOD1_DIR)
 	elif (core.extra.check_url(url2)):
+		#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
 		print("The APOD URL gave an error, ending...")
 		bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
 		if VERVOSE: print(bg2.to_string())
@@ -98,6 +100,7 @@ def main():
 
 		core.extra.clean_old_bgs(bg2, APOD2_DIR)
 	else:
+		#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
 		print("The two URLs gave an error, ending...")
 		fname=extra.choose_random_file(DEFBG_DIR)
 		extra.set_as_bg(fname,DEFBG_DIR+'/'+fname)

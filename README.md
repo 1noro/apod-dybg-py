@@ -17,7 +17,7 @@ Note that this project is still under development, so it is not yet stable enoug
 Currently the project is at a very early stage of its development (ALPHA), I would like to provide an installer as soon as possible.
 
 # Uninstallation
-Currently the uninstaller.py is not yet implemented.
+Currently the uninstall.py file is not yet implemented.
 
 # Credits
 Created, programmed and maintained by boot1110001.
