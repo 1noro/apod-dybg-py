@@ -12,6 +12,8 @@ from os.path import isfile, join #for list files in dir
 from os import remove #for delete files
 from random import randint #to get a rabdom integer
 
+from utils import CmdColor
+
 ### FUNCTIONS ##################################################################
 def get_page1():
 	print("[DOWN] Downloading the page 'http://apod.nasa.gov/apod/' to find the image1...")
@@ -30,12 +32,12 @@ def get_page2():
 def check_url(url):
 	try:
 		resp = urllib2.urlopen(url)
-		print "[ OK ] The URL '"+url+"' gave the code:", resp.code, resp.msg
+		print "["+CmdColor.OKGREEN+" OK "+CmdColor.ENDC+"] The URL '"+url+"' gave the code:", resp.code, resp.msg
 		return True
 	except urllib2.URLError, e:
 		if not hasattr(e,"code"):
 			raise
-		print "[FAIL] The URL '"+url+"' gave the error:", e.code, e.msg
+		print "["+CmdColor.FAIL+"FAIL"+CmdColor.ENDC+"] The URL '"+url+"' gave the error:", e.code, e.msg
 		return False
 	else:
 		return False
