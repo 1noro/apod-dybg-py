@@ -1,8 +1,8 @@
 
 # Astronomy Picture Of the Day DYBG ![](https://raw.githubusercontent.com/boot1110001/apod-dybg-py/master/media/icons/24x24/apod-dybg-py.png)
-Script to change daily the wallpaper of your GNOME Shell for the photo of the "Astronomy Picture of the Day" (https://apod.nasa.gov) or the "Amateur Astronomy Picture of the Day" (http://www.aapodx2.com) according to your preference.
+Script to change daily the wallpaper of your GNOME Shell for the photo of the "[Astronomy Picture of the Day](https://apod.nasa.gov)" or the "[Amateur Astronomy Picture of the Day](http://www.aapodx2.com)" according to your preference.
 
-This version is a Python rewrite of my previous project written in BASH (https://github.com/boot1110001/apod-dybg).
+This version is a Python rewrite of my [previous project written in BASH](https://github.com/boot1110001/apod-dybg).
 
 In the future I would like to add support for more desktop environments (starting with XFCE).
 
@@ -35,10 +35,10 @@ Currently the `utils/uninstall.py` file is not yet implemented.
 ## Credits
 
 - Created, programmed and maintained by @boot1110001.
-- Inspired on the script of Josh Schreuder (2011) https://gist.github.com/JoshSchreuder/882666.
+- Inspired on the [script](https://gist.github.com/JoshSchreuder/882666) of [Josh Schreuder](https://gist.github.com/JoshSchreuder).
 
 ## Licenses
 
-- Project under the __GNU General Public License version 3__ (https://www.gnu.org/licenses/gpl.txt).
-- The icons sets are under the __Creative Commons Attribution 4.0 International__ (CC BY 4.0) license (https://creativecommons.org/licenses/by/4.0/).
-- The default wallpapers added to the project are images taken from web page https://apod.nasa.gov/apod, so their __corresponding license__ will be applied.
+- Project under the __[GNU General Public License version 3](https://www.gnu.org/licenses/gpl.txt)__.
+- The icons sets are under the __[Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)__ (CC BY 4.0) license .
+- The default wallpapers added to the project are images taken from web page "[Astronomy Picture of the Day](https://apod.nasa.gov)", so their __corresponding license__ will be applied.
