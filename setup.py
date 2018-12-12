@@ -11,11 +11,35 @@ import stat #for change permissions
 # To get the HOME user dir in linux.
 HOME = os.path.expanduser("~")
 # The version of the program.
-VERSION="20181212a"
+VERSION=''
+with open('version.txt', 'r') as version_file:
+    VERSION=version_file.read().replace('\n', '')
 
 ### EXEC #######################################################################
 print "# APOD Dynamic Background ["+VERSION+"] by boot1110001"
 print "# Function: Install or update 'apod-dybg-py'"
+print ""
+
+# PREVIOUS CHECKS
+print "# Checking if there is already a version of this program installed..."
+folder=HOME+'/.apod-dybg-py'
+if os.path.exists(folder):
+    print "# Yes, there is another version installed."
+    try:
+        with open(folder+'/version.txt', 'r') as version_file:
+            installed_version=version_file.read().replace('\n', '')
+            if (VERSION != installed_version):
+                print "# The version is different, deleting and starting again..."
+                shutil.rmtree(folder)
+            else:
+                print "# It is the same version, only the updated files are replaced..."
+        pass
+    except IOError:
+        print "# The version file was not found, deleting and starting again..."
+        shutil.rmtree(folder)
+        pass
+else:
+    print "# No, there is no other version installed."
 print ""
 
 # FOLDER STRUCTURE
@@ -85,6 +109,12 @@ print ""
 
 # COPYING FILES
 print "### Copying files"
+print "# Copying the program version file"
+orig_file='version.txt'
+dest_file=HOME+'/.apod-dybg-py/version.txt'
+shutil.copyfile(orig_file,dest_file)
+print " cp "+dest_file
+
 print "# Copying the main script"
 orig_file='apod-dybg-py.py'
 dest_file=HOME+'/.apod-dybg-py/apod-dybg-py.py'
