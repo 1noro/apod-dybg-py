@@ -113,16 +113,24 @@ def main():
 			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
 			print("[FAIL] The two URLs gave an error, assigning a default background...")
 			core.extra.set_def_bg(DEFBG_DIR)
-	elif connection1 and core.extra.check_url(url1):
+	elif connection1:
 		print("[SEMI] The connection to 'www.aapodx2.com' has failed', changing the preference to APOD...")
-		bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
-		if VERVOSE: print(bg1.to_string())
-		only_one_apod(bg1,APOD1_DIR)
-	elif connection2 and core.extra.check_url(url2):
+		if core.extra.check_url(url1):
+			bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
+			if VERVOSE: print(bg1.to_string())
+			only_one_apod(bg1,APOD1_DIR)
+		else:
+			print("[FAIL] Assigning a default background...")
+			core.extra.set_def_bg(DEFBG_DIR)
+	elif connection2:
 		print("[SEMI] The connection to 'apod.nasa.gov/apod' has failed', changing the preference to AAPOD2...")
-		bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
-		if VERVOSE: print(bg2.to_string())
-		only_one_apod(bg2,APOD2_DIR)
+		if core.extra.check_url(url2):
+			bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
+			if VERVOSE: print(bg2.to_string())
+			only_one_apod(bg2,APOD2_DIR)
+		else:
+			print("[FAIL] Assigning a default background...")
+			core.extra.set_def_bg(DEFBG_DIR)
 	else:
 		print("[FAIL] There is no connection, assigning a default background...")
 		core.extra.set_def_bg(DEFBG_DIR)
