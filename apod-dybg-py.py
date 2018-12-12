@@ -49,30 +49,6 @@ def choose_def_bg(pre_fname, loc_dir, bg):
 		core.extra.download_bg(bg)
 	return out
 
-def only_apod1(url1):
-	bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
-	if VERVOSE: print(bg1.to_string())
-
-	pre_fname1 = core.extra.get_prev_bg(APOD1_DIR)
-
-	bg1 = choose_def_bg(pre_fname1, APOD1_DIR, bg1)
-
-	core.extra.set_as_bg(bg1.fname,bg1.get_loc())
-
-	core.extra.clean_old_bgs(bg1, APOD1_DIR)
-
-def only_apod2(url2):
-	bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
-	if VERVOSE: print(bg2.to_string())
-
-	pre_fname2 = core.extra.get_prev_bg(APOD2_DIR)
-
-	bg2 = choose_def_bg(pre_fname2, APOD2_DIR, bg2)
-
-	core.extra.set_as_bg(bg2.fname,bg2.get_loc())
-
-	core.extra.clean_old_bgs(bg2, APOD2_DIR)
-
 def only_one_apod(bg,folder):
 	pre_fname = core.extra.get_prev_bg(folder)
 	bg = choose_def_bg(pre_fname, folder, bg)
@@ -122,11 +98,15 @@ def main():
 		elif (core.extra.check_url(url1)):
 			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
 			print("[FAIL] The AAPOD2 URL gave an error, changing the preference to APOD...")
-			only_apod1(url1)
+			bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
+			if VERVOSE: print(bg1.to_string())
+			only_one_apod(bg1,APOD1_DIR)
 		elif (core.extra.check_url(url2)):
 			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
 			print("[FAIL] The APOD URL gave an error, changing the preference to AAPOD2...")
-			only_apod2(url2)
+			bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
+			if VERVOSE: print(bg2.to_string())
+			only_one_apod(bg2,APOD2_DIR)
 		else:
 			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
 			print("[FAIL] The two URLs gave an error, assigning a default background...")
@@ -134,7 +114,9 @@ def main():
 			core.extra.set_as_bg(fname,DEFBG_DIR+'/'+fname)
 	elif connection1 and core.extra.check_url(url1):
 		print("[FAIL] The connection to 'www.aapodx2.com' has failed', changing the preference to APOD...")
-		only_apod1(url1)
+		bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
+		if VERVOSE: print(bg1.to_string())
+		only_one_apod(bg1,APOD1_DIR)
 	elif connection2 and core.extra.check_url(url2):
 		print("[FAIL] The connection to 'apod.nasa.gov/apod' has failed', changing the preference to AAPOD2...")
 		bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
