@@ -1,6 +1,6 @@
 
-# Astronomy Picture Of the Day DYBG ![](https://raw.githubusercontent.com/boot1110001/apod-dybg-py/master/media/icons/32x32/apod-dybg-py.png)
-Script to change daily the wallpaper of your GNOME Shell for the photo of the "Astronomy Picture of the Day :rocket:" (https://apod.nasa.gov) or the "Amateur Astronomy Picture of the Day" (http://www.aapodx2.com) according to your preference.
+# Astronomy Picture Of the Day DYBG ![](https://raw.githubusercontent.com/boot1110001/apod-dybg-py/master/media/icons/48x48/apod-dybg-py.png)
+Script to change daily the wallpaper of your GNOME Shell for the photo of the "Astronomy Picture of the Day" (https://apod.nasa.gov) or the "Amateur Astronomy Picture of the Day" (http://www.aapodx2.com) according to your preference.
 
 This version is a Python rewrite of my previous project written in BASH (https://github.com/boot1110001/apod-dybg).
 
@@ -19,7 +19,7 @@ The tests prove that it works correctly on Ubuntu 18.04.01 with GNOME Shell and 
 
 Note that this project is still under development, so it is not yet stable enough.
 
-## Installation
+## Installation :rocket:
 Currently the project is at a very early stage of its development (BETA), you can install it on your PC, but future versions may delete previous configurations in the program.
 
 ```
