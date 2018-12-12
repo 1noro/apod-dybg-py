@@ -29,7 +29,7 @@ chmod u+x setup.py
 ./setup.py
 ```
 
-## Uninstallation
+## Uninstallation :boom:
 Currently the ```utils/uninstall.py``` file is not yet implemented.
 
 ## Credits
