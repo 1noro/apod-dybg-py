@@ -29,6 +29,9 @@ chmod u+x setup.py
 ./setup.py
 ```
 
+## Configuration
+> The configurations are implemented but not yet explained.
+
 ## Uninstallation :boom:
 Currently the `utils/uninstall.py` file is not yet implemented.
 
