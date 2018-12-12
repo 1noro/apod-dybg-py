@@ -66,9 +66,9 @@ def main():
 		bg2 = choose_def_bg(pre_fname2, APOD2_DIR, bg2)
 
 		if (PREFERENCE == 2):
-			core.extra.set_as_bg2(bg2.fname,bg2.get_loc())
+			core.extra.set_as_bg(bg2.fname,bg2.get_loc())
 		else:
-			core.extra.set_as_bg2(bg1.fname,bg1.get_loc())
+			core.extra.set_as_bg(bg1.fname,bg1.get_loc())
 
 		core.extra.clean_old_bgs(bg1, APOD1_DIR)
 		core.extra.clean_old_bgs(bg2, APOD2_DIR)
@@ -81,7 +81,7 @@ def main():
 
 		bg1 = choose_def_bg(pre_fname1, APOD1_DIR, bg1)
 
-		core.extra.set_as_bg2(bg1.fname,bg1.get_loc())
+		core.extra.set_as_bg(bg1.fname,bg1.get_loc())
 
 		core.extra.clean_old_bgs(bg1, APOD1_DIR)
 	elif (core.extra.check_url(url2)):
@@ -93,13 +93,13 @@ def main():
 
 		bg2 = choose_def_bg(pre_fname2, APOD2_DIR, bg2)
 
-		core.extra.set_as_bg2(bg2.fname,bg2.get_loc())
+		core.extra.set_as_bg(bg2.fname,bg2.get_loc())
 
 		core.extra.clean_old_bgs(bg2, APOD2_DIR)
 	else:
 		print("The two URLs gave an error, ending...")
 		fname=extra.choose_random_file(DEFBG_DIR)
-		extra.set_as_bg2(fname,DEFBG_DIR+'/'+fname)
+		extra.set_as_bg(fname,DEFBG_DIR+'/'+fname)
 
 ### EXEC #######################################################################
 # CHECK IN THE FUTURE HOW IT WORKS
