@@ -135,6 +135,8 @@ def main():
 	else:
 		print("[FAIL] There is no connection, assigning a default background...")
 		core.extra.set_def_bg(DEFBG_DIR)
+		# If there is a downloaded image and there is no connection, check the
+		# date of the download, and if it is the same day, assign it as bg.
 
 ### EXEC #######################################################################
 # CHECK IN THE FUTURE HOW IT WORKS
