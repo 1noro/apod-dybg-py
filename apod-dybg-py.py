@@ -1,3 +1,4 @@
+#! /usr/bin/python
 #apod-dybg
 #by boot1110001
 
