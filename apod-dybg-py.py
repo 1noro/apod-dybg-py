@@ -10,6 +10,7 @@ from optparse import OptionParser #for exec options parser
 
 import core.clases
 import core.extra
+from core.utils import CmdColor
 
 ### NON EDITABLE VARIABLES #####################################################
 # To get the HOME user dir in linux.
@@ -36,14 +37,14 @@ VERVOSE = False
 def choose_def_bg(pre_fname, loc_dir, bg):
 	out = bg
 	if (pre_fname != ''):
-		print("A image already exists in the directory '"+loc_dir+"'.")
+		print("[INFO] A image already exists in the directory '"+loc_dir+"'.")
 		pre = core.clases.LocalBgImg(pre_fname, loc_dir)
 		if VERVOSE: print(pre.to_string())
 		if(pre == bg):
-			print("The image has not yet been updated on the web. No need to download a new one.")
+			print("[LOCA] The image has not yet been updated on the web. No need to download a new one.")
 			out = pre
 		else:
-			print("The image of the web is more updated.")
+			print("[INFO] The image of the web is more updated.")
 			core.extra.download_bg(bg)
 	else:
 		core.extra.download_bg(bg)
@@ -77,9 +78,9 @@ def main():
 		pass
 
 	if connection1 and connection2:
-		print("[ OK ] The two connections are online.")
+		print("["+CmdColor.OKGREEN+" OK "+CmdColor.ENDC+"] The two connections are online.")
 		if (core.extra.check_url(url1) and core.extra.check_url(url2)):
-			print("[ OK ] The two URLs are correct and work well.")
+			print("["+CmdColor.OKGREEN+" OK "+CmdColor.ENDC+"] The two URLs are correct and work well.")
 			bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR,NOW)
 			if VERVOSE: print(bg1.to_string())
 			bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR,NOW)
@@ -100,22 +101,22 @@ def main():
 			core.extra.clean_old_bgs(bg2, APOD2_DIR)
 		elif (core.extra.check_url(url1)):
 			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
-			print("[SEMI] The AAPOD2 URL gave an error, changing the preference to APOD...")
+			print("["+CmdColor.WARNING+"SEMI"+CmdColor.ENDC+"] The AAPOD2 URL gave an error, changing the preference to APOD...")
 			bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
 			if VERVOSE: print(bg1.to_string())
 			only_one_apod(bg1,APOD1_DIR)
 		elif (core.extra.check_url(url2)):
 			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
-			print("[SEMI] The APOD URL gave an error, changing the preference to AAPOD2...")
+			print("["+CmdColor.WARNING+"SEMI"+CmdColor.ENDC+"] The APOD URL gave an error, changing the preference to AAPOD2...")
 			bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
 			if VERVOSE: print(bg2.to_string())
 			only_one_apod(bg2,APOD2_DIR)
 		else:
 			#add notify-send -i "$ICON" "Fallo en la descarga del fondo de pantalla APOD" "La imagen de hoy de la 'Astronomy Picture of the Day' no se ha podido descargar. Asignado el fondo por defecto."
-			print("[FAIL] The two URLs gave an error, assigning a default background...")
+			print("["+CmdColor.FAIL+"FAIL"+CmdColor.ENDC+"] The two URLs gave an error, assigning a default background...")
 			core.extra.set_def_bg(DEFBG_DIR)
 	elif connection1:
-		print("[SEMI] The connection to 'www.aapodx2.com' has failed, changing the preference to APOD...")
+		print("["+CmdColor.WARNING+"SEMI"+CmdColor.ENDC+"] The connection to 'www.aapodx2.com' has failed, changing the preference to APOD...")
 		if core.extra.check_url(url1):
 			bg1 = core.clases.RemoteBgImg('apod1', url1, APOD1_DIR, NOW)
 			if VERVOSE: print(bg1.to_string())
@@ -124,7 +125,7 @@ def main():
 			print("Assigning a default background...")
 			core.extra.set_def_bg(DEFBG_DIR)
 	elif connection2:
-		print("[SEMI] The connection to 'apod.nasa.gov/apod' has failed, changing the preference to AAPOD2...")
+		print("["+CmdColor.WARNING+"SEMI"+CmdColor.ENDC+"] The connection to 'apod.nasa.gov/apod' has failed, changing the preference to AAPOD2...")
 		if core.extra.check_url(url2):
 			bg2 = core.clases.RemoteBgImg('apod2', url2, APOD2_DIR, NOW)
 			if VERVOSE: print(bg2.to_string())
@@ -133,7 +134,7 @@ def main():
 			print("Assigning a default background...")
 			core.extra.set_def_bg(DEFBG_DIR)
 	else:
-		print("[FAIL] There is no connection, assigning a default background...")
+		print("["+CmdColor.FAIL+"FAIL"+CmdColor.ENDC+"] There is no connection, assigning a default background...")
 		core.extra.set_def_bg(DEFBG_DIR)
 		# If there is a downloaded image and there is no connection, check the
 		# date of the download, and if it is the same day, assign it as bg.
