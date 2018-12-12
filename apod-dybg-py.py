@@ -62,7 +62,7 @@ def main():
 
 	try:
 		url1 = core.extra.get_page1()
-		# url1 = 'http://apod.nasa.gov/apod//2018/20181212.jpg1'
+		# url1 = 'http://apod.nasa.gov/apod//2018/20181212.jpg1' # 404
 		pass
 	except urllib2.URLError:
 		connection1=False
@@ -70,7 +70,7 @@ def main():
 
 	try:
 		url2 = core.extra.get_page2()
-		# url2 = 'http://www.aapodx2.com/2018/20181212.jpg2'
+		# url2 = 'http://www.aapodx2.com/2018/20181212.jpg2' # 404
 		pass
 	except urllib2.URLError:
 		connection2=False
