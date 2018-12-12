@@ -15,7 +15,7 @@ from random import randint #to get a rabdom integer
 ### FUNCTIONS ##################################################################
 def get_page1():
 	print("Downloading the page 'http://apod.nasa.gov/apod/' to find the image1...")
-	web_content=urllib2.urlopen('http://apod.nasa.gov/apod2/').read()
+	web_content=urllib2.urlopen('http://apod.nasa.gov/apod/').read()
 	patron=re.compile('.*<IMG SRC=\"(.*?)\"')
 	matcher=patron.findall(web_content)
 	return 'http://apod.nasa.gov/apod/'+matcher[0]
@@ -30,14 +30,15 @@ def get_page2():
 def check_url(url):
 	try:
 		resp = urllib2.urlopen(url)
+		print "[ OK ] The URL '"+url+"' gave the code:", resp.code, resp.msg
+		return True
 	except urllib2.URLError, e:
 		if not hasattr(e,"code"):
 			raise
-		print "[FAIL]The URL '"+url+"' gave the error:", e.code, e.msg
+		print "[FAIL] The URL '"+url+"' gave the error:", e.code, e.msg
 		return False
 	else:
-		print "[ OK ] The URL '"+url+"' gave the code:", resp.code, resp.msg
-		return True
+		return False
 
 def download_bg(bg):
 	print("Downloading the image '"+bg.url+"' in '"+bg.get_loc()+"'...")
@@ -76,3 +77,7 @@ def get_prev_bg(folder):
 def choose_random_file(folder):
 	folder_files = [f for f in listdir(folder) if isfile(join(folder, f))]
 	return folder_files[randint(0,len(folder_files)-1)]
+
+def set_def_bg(folder):
+	fname=choose_random_file(folder)
+	set_as_bg(fname,folder+'/'+fname)
