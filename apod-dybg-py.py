@@ -17,8 +17,8 @@ from core.utils import CmdColor
 HOME = expanduser("~")
 # To get the HOME user dir in linux.
 NOTIFY_ICON = HOME+'/.apod-dybg-py/media/icons/22x22/apod-dybg-py.png'
-# Time wehe this script is executed in format YYYY-mm-dd-HH-MM-SS.
-NOW = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
+# Time UTC wehe this script is executed in format YYYY-mm-dd-HH-MM-SS.
+NOW = datetime.datetime.utcnow().strftime("%Y-%m-%d-%H-%M-%S")
 
 ### EDITABLE VARIABLES #########################################################
 # To ensure the correct operation of the program, the variables
