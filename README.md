@@ -58,7 +58,17 @@ Information to keep in mind:
 - You can add your own default backgrounds by copying them to the `~/.apod-dybg-py/media/bg-default` folder of the program once it is installed on your computer.
 
 ## Uninstallation
-> Currently the `utils/uninstall.py` file is not yet implemented.
+
+> Currently the `uninstall.py` file is not yet implemented.
+
+To uninstall the program and delete all the files that are scattered by the system, the fastest and easiest way is:
+
+```
+cd ~/.apod-dybg-py
+./uninstall.py
+```
+
+> It is important to use the `uninstall.py` file found in the folder`~/.apod-dybg-py`, any other variant of this file may not work correctly, especially if they are different versions.
 
 ## Credits
 
