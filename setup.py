@@ -115,13 +115,14 @@ dest_file=HOME+'/.apod-dybg-py/version.txt'
 shutil.copyfile(orig_file,dest_file)
 print " cp "+dest_file
 
-print "# Copying the main script"
+print "# Copying the main program"
 orig_file='apod-dybg-py.py'
 dest_file=HOME+'/.apod-dybg-py/apod-dybg-py.py'
 shutil.copyfile(orig_file,dest_file)
 print " cp "+dest_file
-print "# Changing script permissions"
+print "# Changing program permissions"
 st = os.stat(dest_file)
+# Consider assigning only the permissions to the owner user.
 # os.chmod(dest_file, st.st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
 os.chmod(dest_file, st.st_mode | 0111) #the same as avove.
 
@@ -142,6 +143,15 @@ orig_file='core/utils.py'
 dest_file=HOME+'/.apod-dybg-py/core/utils.py'
 shutil.copyfile(orig_file,dest_file)
 print " cp "+dest_file
+
+print "# Copiyin the uninstaller"
+orig_file='utils/uninstall.py'
+dest_file=HOME+'/.apod-dybg-py/uninstall.py'
+shutil.copyfile(orig_file,dest_file)
+print " cp "+dest_file
+print "# Changing uninstaller permissions"
+st = os.stat(dest_file)
+os.chmod(dest_file, st.st_mode | 0111) #consider assigning only the permissions to the owner user.
 
 print "# Copying all the default backgrounds"
 orig_folder='media/bg-default'
@@ -193,8 +203,8 @@ shutil.copyfile(orig_file,dest_file)
 print " cp "+dest_file
 print ""
 
-# Creating the script Gnome shell launcher (.desktop)
-print "### Creating the script Gnome Shell launcher (.desktop)"
+# Creating the program Gnome shell launcher (.desktop)
+print "### Creating the program Gnome Shell launcher (.desktop)"
 desktoptxt  = "[Desktop Entry]\n"
 desktoptxt += "Type=Application\n"
 desktoptxt += "Version="+VERSION+"\n"
