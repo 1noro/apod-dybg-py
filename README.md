@@ -30,7 +30,31 @@ chmod u+x setup.py
 ```
 
 ## Configuration
-> The configurations are implemented but not yet explained.
+
+In the file `apod-dybg-py.py` you can find this section at the beginning of the file:
+
+```
+### EDITABLE VARIABLES #########################################################
+# To ensure the correct operation of the program, the variables
+# APOD1_DIR and APOD2_DIR must be different routes.
+
+# Write the path to the directory where the APOD images will be saved.
+APOD1_DIR = HOME+'/.apod-dybg-py/media/apod-image'
+# Write the path to the directory where the AAPOD2 images will be saved.
+APOD2_DIR = HOME+'/.apod-dybg-py/media/aapod2-image'
+# Select the APOD preference (1) over AAPOD2 (2). By default, APOD (1) will be used.
+PREFERENCE = 1
+# Write the path to the directory where the default images are saved.
+DEFBG_DIR = HOME+'/.apod-dybg-py/media/bg-default'
+# Extra vervose option (to see the file's information).
+VERVOSE = False
+```
+
+Information to keep in mind:
+
+- The changes made before the installation of the program on your PC will be applied in the subsequent installation.
+- If you want to modify the configuration of the program once it is installed on your PC, the file `apod-dybg-py.py` will be found in the folder` ~ \ .apod-dybg-py \ apod-dybg-py .py`.
+- The variable `HOME` entered before directory addresses contains the absolute path to the home folder of the user who runs the program.
 
 ## Uninstallation
 > Currently the `utils/uninstall.py` file is not yet implemented.
