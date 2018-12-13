@@ -10,7 +10,7 @@ This prject is a Python rewrite of my [previous project](https://github.com/boot
 
 - The reference time of the program is not the local one, it takes the Coordinated [Universal Time (UTC)](https://en.wikipedia.org/wiki/Coordinated_Universal_Time).
 - The downloaded images are deleted from one day to the next, in order not to occupy all the space of your PC. In the future I would like to add a feature that allows you to decide whether or not to save the old images in a special folder.
-- If you can't download any of the images from the internet, the program decides a random background between the images found in the X directory. By default the program comes with 3 beautiful images, but you can [add more](https://github.com/boot1110001/apod-dybg-py#configuration).
+- If you can't download any of the images from the internet, the program decides a random background between the images found in the `~/.apod-dybg-py/media/bg-default` directory. By default the program comes with 3 beautiful images, but you can [add more](https://github.com/boot1110001/apod-dybg-py#configuration).
 
 ## Requirements
 At the present time, this program only __works on GNU/Linux with a GNOME Shell desktop__ environment.
