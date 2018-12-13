@@ -25,22 +25,22 @@ print "# Function: Uninstall 'apod-dybg-py'"
 print "# Removing program folder"
 folder = HOME+'/.apod-dybg-py'
 shutil.rmtree(folder)
-print " - "+folder
+print " -"+folder+"/*"
 
 print "# Removing program icons"
 file = HOME+'/.icons/apod-dybg-py.png'
 os.remove(file)
-print " - "+file
+print " -"+file
 
 print "# Removing program .desktop file from applications"
 file = HOME+'/.local/share/applications/apod-dybg-py.desktop'
 os.remove(file)
-print " - "+file
+print " -"+file
 
 print "# Removing program .desktop file from autostart"
 file = HOME+'/.config/autostart/apod-dybg-py.desktop'
 os.remove(file)
-print " - "+file
+print " -"+file
 
 print "# FINALIZED"
 # print "### END"
