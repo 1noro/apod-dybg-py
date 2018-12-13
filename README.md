@@ -68,7 +68,7 @@ cd ~/.apod-dybg-py
 ./uninstall.py
 ```
 
-> It is important to use the `uninstall.py` file found in the folder`~/.apod-dybg-py`, any other variant of this file may not work correctly, especially if they are different versions.
+> It is important to use the `uninstall.py` file found in the folder `~/.apod-dybg-py`, any other variant of this file may not work correctly, especially if they are different versions.
 
 ## Credits
 
