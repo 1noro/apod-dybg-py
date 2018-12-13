@@ -55,7 +55,7 @@ Information to keep in mind:
 - The changes made before the installation of the program on your PC will be applied in the subsequent installation.
 - If you want to modify the configuration of the program once it is installed on your PC, the file `apod-dybg-py.py` will be found in the folder `~/.apod-dybg-py/apod-dybg-py.py`.
 - The variable `HOME` entered before directory addresses contains the absolute path to the home folder of the user who runs the program.
-- You can add your own default backgrounds by copying them to the `~/.apod-dybg-py/media/bg-default` folder of the program once installed on your computer.
+- You can add your own default backgrounds by copying them to the `~/.apod-dybg-py/media/bg-default` folder of the program once it is installed on your computer.
 
 ## Uninstallation
 > Currently the `utils/uninstall.py` file is not yet implemented.
