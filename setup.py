@@ -1,6 +1,5 @@
 #! /usr/bin/python
 #setup
-# Package required to improve the experience (notify-osd)
 
 ### IMPORTS ####################################################################
 import os

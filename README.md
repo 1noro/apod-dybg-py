@@ -59,8 +59,6 @@ Information to keep in mind:
 
 ## Uninstallation
 
-> Currently the `uninstall.py` file is not yet implemented.
-
 To uninstall the program and delete all the files that are scattered by the system, the fastest and easiest way is:
 
 ```
