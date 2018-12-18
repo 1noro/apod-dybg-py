@@ -18,7 +18,7 @@ At the present time, this program __only works on this GNU/Linux__ environments:
 - GNOME Shell
 - XFCE4
 
-This packages are required, but should already be installed:
+This package is required, but should already be installed:
 
 ```
 sudo apt-get install python-gobject
