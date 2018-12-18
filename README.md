@@ -1,6 +1,6 @@
 
 # AP![](https://raw.githubusercontent.com/boot1110001/apod-dybg-py/master/media/icons/24x24/apod-dybg-py.png)D Dynamic Background
-The Astronomy Picture Of the Day Dynamic Background is a program to install in your PC and change daily the wallpaper of your GNOME Shell for the photo of the [Astronomy Picture of the Day](https://apod.nasa.gov) or the [Amateur Astronomy Picture of the Day](http://www.aapodx2.com) according to [your preference](https://github.com/boot1110001/apod-dybg-py#configuration).
+The Astronomy Picture Of the Day Dynamic Background is a program to install in your PC and change daily the wallpaper of your desktop for the photo of the [Astronomy Picture of the Day](https://apod.nasa.gov) or the [Amateur Astronomy Picture of the Day](http://www.aapodx2.com) according to [your preference](https://github.com/boot1110001/apod-dybg-py#configuration).
 
 This prject is a Python rewrite of my [previous project](https://github.com/boot1110001/apod-dybg) written in BASH.
 
@@ -13,15 +13,21 @@ This prject is a Python rewrite of my [previous project](https://github.com/boot
 - If the program can't download any of the images from the internet, it decides a random background between the images found in the `~/.apod-dybg-py/media/bg-default` directory. By default the program comes with 3 beautiful images, but you can [add more](https://github.com/boot1110001/apod-dybg-py#configuration).
 
 ## Requirements
-At the present time, this program only __works on GNU/Linux with a GNOME Shell desktop__ environment.
+At the present time, this program __only works on this GNU/Linux__ environments:
 
-This one is required, but should already be installed:
+- GNOME Shell
+- XFCE4
+
+This packages are required, but should already be installed:
 
 ```
 sudo apt-get install python-gobject
 ```
 
-The tests prove that it _works correctly_ on Ubuntu 18.04.01 with GNOME Shell 3.28.3 and the 2.7.15rc1 Python version, and I have not needed to install any program.
+The tests prove that it _works correctly_ on:
+
+- Ubuntu 18.04.01 with GNOME Shell 3.28.3 and the 2.7.15rc1 Python version, and I have not needed to install any program.
+- Xubuntu 16.04.5 with XFCE4 4.12 and the 2.7.12 Python version, and I need to install the `python-gobject` program.
 
 > Note that this project is still under development, so it is not yet stable enough.
 
