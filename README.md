@@ -16,7 +16,7 @@ This prject is a Python rewrite of my [previous project](https://github.com/boot
 At the present time, this program __only works on this GNU/Linux__ environments:
 
 - GNOME Shell
-- XFCE4
+- XFCE4 (only in Xubuntu)
 
 This package is required, but should already be installed:
 
