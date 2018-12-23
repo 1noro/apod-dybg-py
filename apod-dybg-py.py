@@ -67,7 +67,7 @@ def main():
 		url1 = core.extra.get_page1()
 		# url1 = 'http://apod.nasa.gov/apod//2018/20181212.jpg1' # 404
 		pass
-	except urllib2.URLError:
+	except (urllib2.URLError, IndexError):
 		connection1=False
 		pass
 
@@ -75,7 +75,7 @@ def main():
 		url2 = core.extra.get_page2()
 		# url2 = 'http://www.aapodx2.com/2018/20181212.jpg2' # 404
 		pass
-	except urllib2.URLError:
+	except (urllib2.URLError, IndexError):
 		connection2=False
 		pass
 
