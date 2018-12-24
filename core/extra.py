@@ -54,10 +54,23 @@ def download_bg(bg):
 def set_as_bg(fname,full_loc):
 	print("[INFO] Assigning '"+fname+"' as wallpaper...")
 	# The program should detect the desktop environment and select the correct command.
+	if (True):
+		set_as_bg_XFCE(fname,full_loc)
+	else:
+		set_as_bg_GNOME_SHELL(fname,full_loc)
+
+def set_as_bg_GNOME_SHELL(fname,full_loc):
 	bashCommand = 'gsettings set org.gnome.desktop.background picture-uri file://'+full_loc
 	# print('CMD: '+bashCommand)
 	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
+
+def set_as_bg_XFCE(fname,full_loc):
+	bashCommand = 'xfconf-query -c xfce4-desktop -l | grep "last-image$"'
+	# print('CMD: '+bashCommand)
+	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
+	output, error = process.communicate()
+	print(output)
 
 def send_notification(icon,summary,body):
 	# From: https://www.devdungeon.com/content/desktop-notifications-linux-python
