@@ -72,8 +72,8 @@ def set_as_bg_XFCE(fname,full_loc):
 	output, error = process.communicate()
 	print(output)
 	patron=re.compile('\n(.*last-image$)')
-	m=patron.search(output)
-	print(m.group(0))
+	matcher=patron.findall(web_content)
+	print(matcher)
 
 def send_notification(icon,summary,body):
 	# From: https://www.devdungeon.com/content/desktop-notifications-linux-python
