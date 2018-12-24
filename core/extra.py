@@ -66,12 +66,16 @@ def set_as_bg_GNOME_SHELL(fname,full_loc):
 	output, error = process.communicate()
 
 def set_as_bg_XFCE(fname,full_loc):
-	bashCommand = 'xfconf-query -c xfce4-desktop -l | grep "last-image$"'
+	bashCommand = 'xfconf-query -c xfce4-desktop -l'
 	# print('CMD: '+bashCommand)
 	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
 	print(output)
-	print(error)
+	patron=re.compile('\n(.*last-image$)')
+	m=patron.search(output)
+	print(m.group)
+
+
 
 def send_notification(icon,summary,body):
 	# From: https://www.devdungeon.com/content/desktop-notifications-linux-python
