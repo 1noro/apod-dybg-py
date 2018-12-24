@@ -72,7 +72,7 @@ def set_as_bg_XFCE(fname,full_loc):
 	output, error = process.communicate()
 	print(output)
 	patron=re.compile('\n(.*last-image$)')
-	matcher=patron.findall(web_content)
+	matcher=patron.findall(output)
 	print(matcher)
 
 def send_notification(icon,summary,body):
