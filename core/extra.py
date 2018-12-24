@@ -75,8 +75,6 @@ def set_as_bg_XFCE(fname,full_loc):
 	m=patron.search(output)
 	print(m.group)
 
-
-
 def send_notification(icon,summary,body):
 	# From: https://www.devdungeon.com/content/desktop-notifications-linux-python
 	# This one is required, but should already be installed
