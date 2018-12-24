@@ -54,7 +54,7 @@ def download_bg(bg):
 def set_as_bg(fname,full_loc):
 	print("[INFO] Assigning '"+fname+"' as wallpaper...")
 	# The program should detect the desktop environment and select the correct command.
-	if (True):
+	if (False):
 		set_as_bg_XFCE(fname,full_loc)
 	else:
 		set_as_bg_GNOME_SHELL(fname,full_loc)
@@ -72,7 +72,7 @@ def set_as_bg_XFCE(fname,full_loc):
 	output, error = process.communicate()
 	print(output)
 	patron=re.compile('\n(.*last-image$)')
-	matcher=patron.findall(output)
+	matcher=patron.findall(output) #NO DEVUELVE NADAAA!!
 	print(matcher)
 
 def send_notification(icon,summary,body):
