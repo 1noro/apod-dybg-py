@@ -71,6 +71,7 @@ def set_as_bg_XFCE(fname,full_loc):
 	process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
 	output, error = process.communicate()
 	print(output)
+	print(error)
 
 def send_notification(icon,summary,body):
 	# From: https://www.devdungeon.com/content/desktop-notifications-linux-python
