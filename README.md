@@ -90,3 +90,9 @@ cd ~/.apod-dybg-py
 - Project under the __[GNU General Public License version 3](https://www.gnu.org/licenses/gpl.txt)__.
 - The icons sets are under the __[Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)__ (CC BY 4.0) license .
 - The default wallpapers added to the project are images taken from web page [Astronomy Picture of the Day](https://apod.nasa.gov), so their __corresponding license__ will be applied.
+
+## Donations
+
+- __Bitcoin:__ 37Cx8i8Q4VjJJpMX6oRYVh2FUpXR1yMf54
+- __Litecoin:__ MMUTvmaiZhPHjK68Jy1Z9roVFo7siGCcf8
+- __Dogecoin:__ DSaqBstRo4h6dpzs9n7UDv39cg9wqErZvo
